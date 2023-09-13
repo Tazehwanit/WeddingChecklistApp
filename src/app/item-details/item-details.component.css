@@ -1,0 +1,93 @@
+.loc-con {
+    font-size: 1.2rem;
+} 
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+mat-card {
+    padding: 0.5rem;
+    margin: 1rem;
+    min-width: 95%;
+}
+
+h2 {
+    padding-top: 1rem;
+}
+
+mat-chip {
+    margin: 0.5rem;
+}
+
+mat-card-content {
+    padding: 1rem;
+}
+
+s{
+    color: grey;
+}
+
+
+.note-header-unchecked{
+    background-color: pink;
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+.note-header-checked{
+    background-color: lightgray;
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+
+} 
+
+
+#add-note {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+mat-form-field {
+    min-width: 50rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+    padding: 1rem;
+}
+
+#formBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#deleteBtn {
+    position: absolute;
+    right: 0;
+}
+
+#titleNotes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    background-color: pink;
+    color: white;
+    padding: 0.5rem;    
+    font-size: 1.2rem;
+    font-weight: bold;
+}

@@ -1,0 +1,92 @@
+.mat-icon {
+    vertical-align: middle;
+    font-size: 1.2rem;
+}
+
+mat-card {
+    padding: 0.5rem;
+    margin: 1rem;
+}
+
+h2 {
+    padding-top: 1rem;
+}
+
+mat-chip {
+    margin: 0.5rem;
+}
+
+mat-card-content {
+    padding: 1rem;
+}
+
+s{
+    color: grey;
+}
+
+mat-card-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.details{
+    padding-right: 1rem;
+}
+
+mat-card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#deleteBtn {
+    position: absolute;
+    right: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+mat-form-field {
+    min-width: 25rem;
+}
+
+#filters {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#filters > mat-checkbox {
+    vertical-align: middle;
+}
+#filter {
+    width: 50%;
+}
+ hr {
+    width: 70%;
+ }
+
+ #selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+ }
+
+ #todo {
+    background-color: pink;
+    font-weight: bold;
+ }

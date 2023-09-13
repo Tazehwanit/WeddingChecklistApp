@@ -1,0 +1,32 @@
+mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+mat-form-field {
+    margin-top: 1rem;
+}
+
+#welkom{
+    margin-top: 1rem;
+    width: 15%;
+}

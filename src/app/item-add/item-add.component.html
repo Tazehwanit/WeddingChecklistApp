@@ -1,0 +1,45 @@
+<p>Voeg hier onder iets toe aan de checklist:</p>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" color="accent">
+    <div class="formItem">
+        <mat-form-field appearance="fill">
+            <mat-label for="title">Titel</mat-label>
+            <input matInput placeholder="Titel" id="title" type="text" formControlName="title" />
+        </mat-form-field>
+    </div>
+
+    <div class="formItem">
+        <mat-form-field appearance="fill">
+            <mat-label for="location">Locatie</mat-label>
+            <input matInput placeholder="Locatie" id="location" type="text" formControlName="location" />
+        </mat-form-field>
+    </div>
+
+    <div class="formItem">
+        <mat-form-field>
+            <mat-label for="description">Beschrijving</mat-label>
+            <textarea matInput placeholder="Beschrijving" id="description" type="text"
+                formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+
+    <div class="formItem">
+        <mat-form-field>
+            <mat-label for="deadline">Deadline</mat-label>
+            <input matInput id="deadline" type="date" formControlName="deadline" />
+        </mat-form-field>
+    </div>
+    <div class="formItem">
+        <mat-form-field>
+            <mat-label>Aanwezigen</mat-label>
+            <mat-select formControlName="people" multiple>
+                <mat-option *ngFor="let person of team" [value]="person.id">{{
+                    person.name
+                    }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <button class="button" type="submit" mat-button color="accent">
+        Toevoegen aan checklist
+    </button>
+</form>

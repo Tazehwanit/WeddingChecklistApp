@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <div id="right-toolbar">
+    <img src="../../assets/img/logo-AF-white.svg" id="logo">
+    <a [routerLink]="['/']" >
+    <h1>Wedding Checklist App</h1>
+  </a>
+  <a
+    mat-icon-button
+    class="example-icon"
+    [routerLink]="['/item-add']" *ngIf="loggedIn">
+    <mat-icon>add</mat-icon>
+</a>
+</div>
+<div class="button">
+  <button type="submit" mat-button (click)="logout()" *ngIf="loggedIn">Afmelden</button>
+</div>
+
+</mat-toolbar>

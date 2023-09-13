@@ -1,0 +1,152 @@
+<mat-card class="item-card" color="primary" *ngIf="item">
+  <mat-card-header>
+    <mat-card-title>
+      <h2 *ngIf="item.checked; else other_content">
+        <s>{{ item.title }}</s>
+      </h2>
+      <ng-template #other_content>
+        <h2>{{ item.title }}</h2>
+      </ng-template>
+    </mat-card-title>
+    <mat-card-subtitle
+      ><mat-icon class="loc-con">location_on</mat-icon>{{ item.location }}
+      <mat-icon class="loc-con">date_range</mat-icon
+      >{{ item.deadline | date }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ item.description }}</p>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions *ngIf="item.people.length > 0">
+    <mat-icon color="accent">people</mat-icon>
+    <mat-chip *ngFor="let p of item.people">
+      <span
+        *ngIf="getPersonById(p) !== undefined"
+        [matTooltip]="'Bereikbaar op ' + getPersonById(p).phoneNumber"
+        >{{ getPersonById(p).name }}</span
+      >
+    </mat-chip>
+  </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="progress"
+      color="accent"
+    ></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
+
+<form
+  [formGroup]="noteForm"
+  (ngSubmit)="onSubmit()"
+  color="accent"
+  *ngIf="showForm"
+>
+  <div class="formItem">
+    <mat-form-field appearance="fill">
+      <mat-label for="title">Titel</mat-label>
+      <input
+        matInput
+        placeholder="Titel"
+        id="title"
+        type="text"
+        formControlName="title"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="formItem">
+    <mat-form-field>
+      <mat-label for="description">Beschrijving</mat-label>
+      <textarea
+        matInput
+        placeholder="Beschrijving"
+        id="description"
+        type="text"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="formItem">
+    <mat-form-field appearance="fill">
+      <mat-label for="link">Link</mat-label>
+      <input
+        matInput
+        placeholder="Link"
+        id="link"
+        type="text"
+        formControlName="link"
+      />
+    </mat-form-field>
+  </div>
+  <div id="formBtns">
+    <button class="button" type="submit" mat-button color="accent">
+      Toevoegen aan item
+    </button>
+    <button
+      class="button"
+      type="reset"
+      mat-button
+      color="accent"
+      (click)="onReset()"
+    >
+      Annuleren
+    </button>
+  </div>
+</form>
+
+<div id="titleNotes" color="primary">
+  <span>Notities</span>
+  <button
+    mat-stroked-button
+    color="secondary"
+    id="add-note"
+    *ngIf="!showForm"
+    (click)="addNote()"
+  >
+    Notitie toevoegen
+  </button>
+</div>
+
+<mat-card *ngFor="let note of itemNotes" class="item-card" color="accent">
+  <div class="container-header" *ngIf="note.checked; else checked_header">
+    <mat-card-header class="note-header-checked">
+      <span>{{ note.title }}</span>
+      <mat-checkbox [(ngModel)]="note.checked" (change)="updateProgress(note)">
+      </mat-checkbox>
+    </mat-card-header>
+  </div>
+
+  <ng-template #checked_header>
+    <mat-card-header class="note-header-unchecked">
+      <span>{{ note.title }}</span>
+      <mat-checkbox [(ngModel)]="note.checked" (change)="updateProgress(note)">
+      </mat-checkbox>
+    </mat-card-header>
+  </ng-template>
+
+  <mat-card-content>
+    <p *ngIf="note.checked; else other_content">
+      <s>{{ note.description }}</s>
+    </p>
+    <ng-template #other_content>
+      <p>{{ note.description }}</p>
+    </ng-template>
+  </mat-card-content>
+
+  <mat-card-actions >
+    <a *ngIf="note.link" color="accent" [href]="note.link">
+      <mat-icon>link</mat-icon>
+    </a>
+    <button
+      id="deleteBtn"
+      mat-icon-button
+      color="primary"
+      (click)="deleteNote(note)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

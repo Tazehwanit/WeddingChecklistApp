@@ -1,0 +1,64 @@
+<form [formGroup]="filterForm" color="accent">
+    <mat-form-field>
+        <mat-label>Aanwezigen</mat-label>
+        <mat-select formControlName="people" multiple>
+            <mat-option *ngFor="let person of team" [value]="person">{{
+                person.name
+                }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-checkbox class="example-margin" labelPosition="before" formControlName="todo"><span id="todo">To Do</span></mat-checkbox>
+</form>
+<hr color="accent" />
+
+<div id="selection">
+    <mat-chip-listbox aria-label="Dog selection">
+        <mat-chip highlighted *ngFor="let p of filterForm.value.people" color="accent">
+            {{ p.name }}
+        </mat-chip>
+        <mat-chip *ngIf="filterForm.value.todo" color="accent" highlighted>
+            Enkel To Do
+        </mat-chip>
+    </mat-chip-listbox>
+</div>
+
+<mat-card class="item-card" color="primary" *ngFor="let item of items">
+    <button id="deleteBtn" mat-icon-button color="accent" (click)="deleteItem(item)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <mat-card-header>
+        <mat-card-title>
+            <mat-checkbox [(ngModel)]="item.checked" (change)="updateItem(item)">
+                <h2 *ngIf="item.checked; else other_content">
+                    <s>{{ item.title }}</s>
+                </h2>
+                <ng-template #other_content>
+                    <h2>{{ item.title }}</h2>
+                </ng-template>
+            </mat-checkbox>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <span class="details"><mat-icon>location_on</mat-icon>{{ item.location }}</span>
+            <span class="details"><mat-icon>date_range</mat-icon>{{ item.deadline | date }}</span>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ item.description }}</p>
+        <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions *ngIf="item.people.length > 0">
+        <div>
+            <mat-icon color="accent">people</mat-icon>
+            <mat-chip *ngFor="let p of item.people">
+                <span *ngIf="getPersonById(p) !== undefined" [matTooltip]="'Bereikbaar op ' +  getPersonById(p).phoneNumber">{{
+                    getPersonById(p).name
+                    }}</span>
+            </mat-chip>
+        </div>
+        <div>
+            <button mat-mini-fab color="accent" [routerLink]="['/items', item.id]">
+                <mat-icon>navigate_next</mat-icon>
+            </button>
+        </div>
+    </mat-card-actions>
+</mat-card>
